@@ -51,9 +51,9 @@ import { store } from '@store/store';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Navigation />
-    </Provider>
+    // <Provider store={store}>
+    // </Provider>
+    <Navigation />
   );
 };
 
