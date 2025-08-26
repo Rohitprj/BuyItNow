@@ -1,5 +1,5 @@
 // import { View, Text } from 'react-native';
-// import React, { useActionState, useEffect } from 'react';
+// import React, { useEffect } from 'react';
 // import { useAppDispatch, useAppSelector } from '@store/reduxHook';
 // import { getHomeContent } from './api/actions';
 
@@ -14,7 +14,7 @@
 //   return (
 //     <View>
 //       <Text>Home</Text>
-//       {/* <Text>{JSON.stringify(data)}</Text> */}
+//       <Text>{JSON.stringify(data)}</Text>
 //     </View>
 //   );
 // };
