@@ -1,4 +1,6 @@
 import createSagaMiddleware from 'redux-saga';
+// import { default as createSagaMiddleware } from 'redux-saga';
+// import * as reduxSaga from 'redux-saga';
 import reduxStorage from './storage';
 import { persistReducer } from 'redux-persist';
 import rootReducer from './rootReducer';
@@ -6,12 +8,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootSaga from './rootSaga';
 import { persistStore } from 'redux-persist';
 
+// const createSagaMiddleware = reduxSaga.default;
+
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['cast', 'account'],
+  whitelist: ['cart', 'account'],
   blacklist: [],
 };
 
