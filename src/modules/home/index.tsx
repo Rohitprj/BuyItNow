@@ -6,6 +6,9 @@ import { getHomeContent } from './api/actions';
 const Home = () => {
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(state => state.home);
+  console.log('Data', JSON.stringify(data, null, 2));
+  console.log('loading', loading);
+  console.log('error', error);
 
   useEffect(() => {
     dispatch(getHomeContent(1));
