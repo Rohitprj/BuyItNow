@@ -1,4 +1,5 @@
-import createSagaMiddleware from 'redux-saga';
+// import createSagaMiddleware from 'redux-saga';
+const createSagaMiddleware = require('redux-saga').default;
 // import { default as createSagaMiddleware } from 'redux-saga';
 // import * as reduxSaga from 'redux-saga';
 import reduxStorage from './storage';

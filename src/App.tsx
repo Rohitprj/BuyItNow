@@ -48,12 +48,13 @@ import React from 'react';
 import Navigation from '@navigation/Navigation';
 import { Provider } from 'react-redux';
 import { store } from '@store/store';
+// import { store } from './store/store';
 
 const App = () => {
   return (
-    // <Provider store={store}>
-    // </Provider>
-    <Navigation />
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   );
 };
 
