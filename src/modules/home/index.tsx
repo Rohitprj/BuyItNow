@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@store/reduxHook';
 import { getHomeContent } from './api/actions';
@@ -15,10 +15,12 @@ const Home = () => {
   }, []);
 
   return (
-    <View>
+    <ScrollView>
       <Text>Home</Text>
       <Text>{JSON.stringify(data, null, 2)}</Text>
-    </View>
+      <Text>{JSON.stringify(loading)}</Text>
+      <Text>{JSON.stringify(error)}</Text>
+    </ScrollView>
   );
 };
 
