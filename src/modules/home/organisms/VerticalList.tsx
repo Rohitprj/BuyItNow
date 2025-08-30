@@ -36,8 +36,12 @@ const VerticalList: FC<{ data: any }> = ({ data }) => {
             onPress={() => navigation('Category')}
           >
             <Image source={{ uri: item?.image_uri }} style={styles.image} />
+            <Text style={styles.productText}>{item?.title}</Text>
+            <Text style={styles.subTitle}>{item?.subTitle}</Text>
           </Pressable>
         )}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.contentContainer}
       />
     </View>
   );
@@ -86,5 +90,17 @@ const styles = StyleSheet.create({
     height: 180,
     resizeMode: 'cover',
   },
+  productText: {
+    fontSize: RFValue(14),
+    fontFamily: FONTS.heading,
+    color: '#222',
+    marginTop: 4,
+  },
+  subTitle: {
+    fontSize: RFValue(10),
+    color: '#222',
+    fontWeight: '400',
+  },
+  contentContainer: { paddingBottom: 10 },
 });
 export default VerticalList;
