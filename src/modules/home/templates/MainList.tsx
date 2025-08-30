@@ -11,10 +11,16 @@ import {
 import React, { FC, useRef, useState } from 'react';
 import { dynamicDashboardData as fullData } from '@utils/db';
 import AddCarousal from '../organisms/AddCarousal';
+import Categories from '../organisms/Categories';
+import Sponser from '../organisms/Sponser';
+import VerticalList from '../organisms/VerticalList';
 
 const PAGE_SIZE = 4;
 const sectionComponents: { [key: string]: React.ComponentType<any> } = {
   ad_carousal: AddCarousal,
+  categories: Categories,
+  sponser: Sponser,
+  vertical_list: VerticalList,
 };
 
 const MainList: FC<{ scrollYGlobal: any }> = ({ scrollYGlobal }) => {

@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import React, { useEffect } from 'react';
 import Animated, {
+  useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withTiming,
@@ -26,20 +27,26 @@ const Dots = (props: { index: number; active: number }) => {
     }
   }, [active, index, progress]);
 
+  const animatedStyle = useAnimatedStyle(() => ({
+    width: `${progress.value * 100}%`,
+  }));
+
   return (
     <View
       style={{
         width: active === index ? 35 : 20,
         height: 4,
         borderRadius: 50,
-        backgroundColor: '#000',
+        backgroundColor: '#DFDFDF',
         overflow: 'hidden',
         marginHorizontal: 5,
       }}
     >
-      <Text style={{ color: '#000' }}>Dots</Text>
       <Animated.View
-        style={[{ height: '100%', backgroundColor: '#000', borderRadius: 50 }]}
+        style={[
+          { height: '100%', backgroundColor: '#000', borderRadius: 50 },
+          animatedStyle,
+        ]}
       />
     </View>
   );

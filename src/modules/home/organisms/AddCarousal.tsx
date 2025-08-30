@@ -17,21 +17,13 @@ const AddCarousal: FC<{ data: any }> = ({ data }) => {
   return (
     <View>
       <FilmSlip />
-      {active != null && (
-        <View style={styles.dots}>
-          {data?.data?.map((item: any, index: any) => {
-            return <Dots active={active} index={index} key={index} />;
-          })}
-        </View>
-      )}
-
       <Carousel
         {...baseOptions}
         loop
         pagingEnabled
         snapEnabled
         autoPlay
-        autoPlayInterval={1000}
+        autoPlayInterval={3000}
         onSnapToItem={(index: any) => setActive(index)}
         data={data?.data}
         renderItem={({ item }: any) => (
@@ -40,18 +32,23 @@ const AddCarousal: FC<{ data: any }> = ({ data }) => {
           </Pressable>
         )}
       />
+      {active != null && (
+        <View style={styles.dots}>
+          {data?.data?.map((item: any, index: any) => {
+            return <Dots active={active} index={index} key={index} />;
+          })}
+        </View>
+      )}
     </View>
   );
 };
 const styles = StyleSheet.create({
-  imageContainer: { width: '100%', height: '100%' },
-  img: { width: '100%', height: '60%', resizeMode: 'cover' },
+  imageContainer: { width: '100%', height: '100%', backgroundColor: 'red' },
+  img: { width: '100%', height: '100%', resizeMode: 'cover' },
   dots: {
     flexDirection: 'row',
-    width: 100,
     alignSelf: 'center',
     marginTop: 10,
-    justifyContent: 'center',
   },
 });
 
