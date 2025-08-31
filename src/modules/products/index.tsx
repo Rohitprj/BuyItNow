@@ -28,7 +28,6 @@ const Products: FC = () => {
     <View style={styles.container}>
       <SafeAreaView />
       <SearchBar />
-      <Text>Products</Text>
     </View>
   );
 };
