@@ -3,9 +3,14 @@ import { Dimensions } from 'react-native';
 export const screenHeight = Dimensions.get('screen').height;
 export const screenWidth = Dimensions.get('screen').width;
 
+// export enum FONTS {
+//   heading = 'CormorantGaramond-Medium',
+//   heading2 = 'CormorantGaramond-Regular',
+// }
+
 export enum FONTS {
-  heading = 'CormorantGaramond-Medium',
-  heading2 = 'CormorantGaramond-Regular',
+  heading = 'Cormorant Garamond Medium',
+  heading2 = 'Cormorant Garamond Regular',
 }
 
 export enum Colors {
