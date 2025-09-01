@@ -6,7 +6,7 @@ import FilmSlip from '../molecules/FilmSlip';
 import Dots from '../atoms/Dots';
 
 const AddCarousal: FC<{ data: any }> = ({ data }) => {
-  console.log('Carousel data', JSON.stringify(data, null, 2));
+  // console.log('Carousel data', JSON.stringify(data, null, 2));
   const [active, setActive] = useState(0);
   const baseOptions = {
     vertical: false,

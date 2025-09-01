@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E7F9EC',
   },
   title: {
-    fontSize: RFValue(14),
+    fontSize: RFValue(16),
     fontFamily: FONTS.heading,
     fontWeight: 'bold',
     color: '#333',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   headerContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingBottom: 10,
     backgroundColor: '#fff',
     alignItems: 'flex-start',

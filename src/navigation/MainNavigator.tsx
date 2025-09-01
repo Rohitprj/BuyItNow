@@ -7,11 +7,13 @@ import { Colors } from '@utils/Constants';
 import { FC } from 'react';
 import { Platform } from 'react-native';
 import { AccountIcon, CartIcon, CategoriesIcon, HomeIcon } from './TabIcons';
+import { useAppSelector } from '@store/reduxHook';
+import { selectTotalItemsInCart } from '@modules/cart/api/slice';
 
 const Tab = createBottomTabNavigator();
 
 const MainNavigator: FC = () => {
-  const count = 2;
+  const count = useAppSelector(selectTotalItemsInCart);
   return (
     <Tab.Navigator
       screenOptions={{

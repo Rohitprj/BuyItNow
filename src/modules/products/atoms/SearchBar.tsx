@@ -21,9 +21,14 @@ const SearchBar: FC<searchBarProps> = ({ cartLengh }) => {
           placeholderTextColor="#666"
         />
       </View>
-      <Icon name="heart-outline" iconFamily="Ionicons" size={28} color="#000" />
-      <Pressable>
-        <Icon name="cart-sharp" iconFamily="Ionicons" size={28} color="#000" />
+      <Icon name="heart-outline" iconFamily="Ionicons" size={24} color="#000" />
+      <Pressable onPress={() => navigation('Cart')}>
+        <Icon name="cart-sharp" iconFamily="Ionicons" size={24} color="#000" />
+        {cartLengh > 0 && (
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>{cartLengh}</Text>
+          </View>
+        )}
       </Pressable>
     </View>
   );
@@ -33,7 +38,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 5,
-    gap: 5,
+    gap: 3,
+    justifyContent: 'center',
   },
   searchContainer: {
     flexDirection: 'row',
@@ -56,9 +62,9 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   badge: {
-    position: 'relative',
+    position: 'absolute',
     top: -5,
-    right: -6,
+    right: -5,
     backgroundColor: 'red',
     borderRadius: 50,
     width: 16,

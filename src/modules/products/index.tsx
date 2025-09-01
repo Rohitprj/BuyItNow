@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import React, { FC, use, useEffect, useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { getProductsByCategory } from './api/getProductsByCategory';
@@ -6,6 +6,9 @@ import { screenHeight } from '@utils/Constants';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBar from './atoms/SearchBar';
+import ProductItem from './atoms/ProductItem';
+import { useAppSelector } from '@store/reduxHook';
+import { selectTotalItemsInCart } from '@modules/cart/api/slice';
 
 const Products: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -15,6 +18,7 @@ const Products: FC = () => {
 
   const fetchProducts = async () => {
     const data = await getProductsByCategory(category?.id);
+    console.log('products', JSON.stringify(data, null, 2));
     setProducts(data);
   };
 
@@ -24,10 +28,32 @@ const Products: FC = () => {
     }
   }, [category?.id]);
 
+  const renderItem = ({ item, index }: any) => {
+    const isOdd = index % 2 !== 0;
+    return <ProductItem isOdd={isOdd} item={item} />;
+  };
+
+  const count = useAppSelector(selectTotalItemsInCart);
+
   return (
     <View style={styles.container}>
       <SafeAreaView />
-      <SearchBar />
+      <SearchBar cartLengh={count} />
+      <FlatList
+        bounces={false}
+        data={products}
+        renderItem={renderItem}
+        keyExtractor={item => item._id.toString()}
+        numColumns={2}
+        contentContainerStyle={styles.listContainer}
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyText}>
+              Opps! No items in this category
+            </Text>
+          </View>
+        }
+      />
     </View>
   );
 };
