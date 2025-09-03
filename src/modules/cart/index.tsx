@@ -13,9 +13,12 @@ import { selectCartItems } from './api/slice';
 import { navigation } from '@navigation/NavigationUtils';
 import { Colors } from '@utils/Constants';
 import OderItems from './atoms/OderItems';
+import PlaceOrderButton from './atoms/PlaceOrderButton';
 
 const index = () => {
   const carts = useAppSelector(selectCartItems);
+
+  const user = useAppSelector(state => state.account.user) as any;
 
   const renderItems = ({ item }: any) => <OderItems item={item} />;
 
@@ -23,9 +26,11 @@ const index = () => {
     <CustomSafeAreaView>
       <View style={styles.container}>
         <Text style={styles.heading}>My Cart</Text>
-        <Text style={styles.number}> 🔢 </Text>
+        <Text style={styles.number}>
+          Deliver to: {user?.phone ? user?.phone : '🔢'}
+        </Text>
         <Text style={styles.address}>
-          Deliver to: Login first to place your orders
+          {user?.address ? user?.address : 'Login first to place your orders'}
         </Text>
       </View>
 
@@ -47,6 +52,8 @@ const index = () => {
           </TouchableOpacity>
         </View>
       )}
+
+      {carts.length > 0 && <PlaceOrderButton />}
     </CustomSafeAreaView>
   );
 };
