@@ -5,17 +5,44 @@ import {
   Platform,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useAppSelector } from '@store/reduxHook';
-import { selectTotalCartPrice } from '../api/slice';
+import { selectCartItems, selectTotalCartPrice } from '../api/slice';
 import LoginModal from '@modules/account/molecules/LoginModal';
+import { createOrder, createTransaction } from '../api/Paygateway';
 
 const PlaceOrderButton = () => {
+  const user = useAppSelector(state => state.account.user) as any;
+  const cart = useAppSelector(selectCartItems);
+
   const price = useAppSelector(selectTotalCartPrice);
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  const handlePlaceOrder = async () => {
+    setLoading(true);
+    const data = await createTransaction(price, user?._id);
+    if (data) {
+      const order = await createOrder(
+        data?.key,
+        data?.amount,
+        data?.order_id,
+        cart,
+        user?._id,
+        user?.address,
+      );
+      setLoading(false);
+      if (order?.type === 'error') {
+        Alert.alert('Payment Failed');
+      } else {
+        setLoading(false);
+        Alert.alert('There was an error');
+      }
+    }
+  };
 
   return (
     <>
@@ -31,7 +58,11 @@ const PlaceOrderButton = () => {
           disabled={loading}
           style={styles.button}
           onPress={() => {
-            setIsVisible(true);
+            if (user) {
+              handlePlaceOrder();
+            } else {
+              setIsVisible(true);
+            }
           }}
         >
           {loading ? (
