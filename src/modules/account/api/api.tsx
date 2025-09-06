@@ -18,6 +18,7 @@ export const loginOrSignup = async (phone: string, address: string) => {
 export const getOrderByUserId = async (userId: string) => {
   try {
     const res = await axios.get(`${BASE_URL}/order/${userId}`);
+    // console.log('getOrderByUserId', JSON.stringify(res, null, 2));
     return res.data.orders;
   } catch (error) {
     console.log('Order Error', error);

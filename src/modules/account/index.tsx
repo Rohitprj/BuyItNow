@@ -20,11 +20,13 @@ export default function Account() {
   const item = route.params as any;
   console.log('ITEMS', item);
   const user = useAppSelector(state => state.account.user) as any;
+  console.log('User Data', JSON.stringify(user, null, 2));
   const [isVisible, setIsVisible] = useState(false);
   const [orders, setOrders] = useState<any[]>([]);
 
   const fetchOrder = async () => {
-    const data = await getOrderByUserId(user?.id);
+    const data = await getOrderByUserId(user?._id);
+    console.log('Order Data', JSON.stringify(data, null, 2));
     if (data) {
       setOrders(data);
     }
